@@ -1,7 +1,7 @@
 import applyMixin from './mixin'
 import devtoolPlugin from './plugins/devtool'
 import ModuleCollection from './module/module-collection'
-import { forEachValue, isObject, isPromise, assert, partial } from './util'
+import { forEachValue, isObject, isPromise, assert, partial, deepCopy } from './util'
 
 let Vue // bind on install
 
@@ -229,7 +229,7 @@ export class Store {
 
   reset () {
     const originalState = getOriginalState(this._modules.root)
-    this.replaceState(originalState)
+    this.replaceState(deepCopy(originalState))
   }
 }
 
